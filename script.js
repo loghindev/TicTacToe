@@ -2,13 +2,13 @@ const userMoveSound = document.getElementById("userMoveSound");
 const computerMoveSound = document.getElementById("computerMoveSound");
 const mutedIcon = document.getElementById("mutedIcon");
 const unmutedIcon = document.getElementById("unmutedIcon");
-const spinner = document.getElementById("spinner");
+const startBtn = document.getElementById("startBtn");
 const gameboard = document.getElementById("gameboard");
-const player1Name = document.querySelector("#scoreBoard #player1 #name");
-const player1Score = document.querySelector("#scoreBoard #player1 #scoreValue");
-const player2Name = document.querySelector("#scoreBoard #player2 #name");
-const player2Scoare = document.querySelector("#scoreBoard #player2 #scoreValue");
-const tieScore = document.querySelector("#scoreBoard #tie #scoreValue");
+const player1Name = document.querySelector("#scoreBoard #player1 .name");
+const player1Score = document.querySelector("#scoreBoard #player1 .scoreValue");
+const player2Name = document.querySelector("#scoreBoard #player2 .name");
+const player2Scoare = document.querySelector("#scoreBoard #player2 .scoreValue");
+const tieScore = document.querySelector("#scoreBoard #tie .scoreValue");
 const opponentComputer = document.querySelector("#scoreBoard #opponentOption #vsBot");
 const opponentFriend = document.querySelector("#scoreBoard #opponentOption #vsFriend");
 const score = {
@@ -25,23 +25,30 @@ const signs = ["X", "0"];
 const player1Sign = signs[Math.floor(Math.random() * signs.length)];
 const player2Sign = setPlayer2();
 let currPlayer = [player1Sign, player2Sign][Math.floor(Math.random() * 2)];
-console.log(`CurrPlayer ${currPlayer}`);
+console.log(`CurrPlayer ${currPlayer} (1st move)`);
 
 function setPlayer2() {
   return player1Sign === "X" ? signs[1] : signs[0];
 }
 
-console.log(player1Sign);
-console.log(player2Sign);
-
 document.addEventListener("DOMContentLoaded", () => {
   generateGameboard();
+  // when page loads -> user vs computer (default);
   updateInterface(player1Sign, player2Sign, opponentType);
-  showCurrentTurn();
+
+  startBtn.addEventListener("click", () => {
+    startBtn.classList.add("hide-btn");
+    startBtn.disabled = true;
+    pending = true;
+    // Check Here
+    awaitComputerMove(currPlayer, Math.floor(Math.random() * 800) + 500);
+  });
   if (opponentType === "computer" && currPlayer === player2Sign) {
     // console.log("Prima miscare computer automat");
     pending = true;
-    awaitComputerMove(currPlayer, Math.floor(Math.random() * 1000) + 1000);
+    if (startBtn.classList.contains("hide-btn")) {
+      awaitComputerMove(currPlayer, Math.floor(Math.random() * 1000) + 1000);
+    }
   }
 });
 
@@ -56,30 +63,19 @@ function generateGameboard() {
     }
   }
 }
-
 function setCell(event) {
-  if (event.target.textContent !== "" || pending) return;
+  if (event.target.textContent !== "" || pending || !startBtn.classList.contains("hide-btn")) return;
   const val = document.createElement("span");
   val.classList = "fade-in";
-  updateCurrentPlayer(val);
+  updatePlayerTurn(val);
   event.target.appendChild(val);
   // console.log(`CurrPlayer ${currPlayer}`);
   if (opponentType === "computer") {
     pending = true;
     awaitComputerMove(currPlayer, Math.floor(Math.random() * 1000) + 1000);
   }
-  showCurrentTurn();
+  displayTurn();
   makeSound(userMoveSound);
-  // if (currPlayer === player1Sign) {
-  //   makeSound(userMoveSound);
-  // } else if (currPlayer === player2Sign) {
-  //   makeSound(computerMoveSound);
-  // } CONTINUE HERE - v1.0
-}
-
-function updateInterface(p1Sign, p2Sign, opponent) {
-  player1Name.textContent = `Player 1 (${p1Sign})`;
-  player2Name.textContent = `${opponent === "computer" ? "Computer " : "Player 2"} (${p2Sign})`;
 }
 
 function awaitComputerMove(currPlayer, delay) {
@@ -95,14 +91,25 @@ function awaitComputerMove(currPlayer, delay) {
       val.classList = "fade-in";
       val.textContent = currPlayer;
       emptyCells[Math.floor(Math.random() * emptyCells.length)].appendChild(val);
-      updateCurrentPlayer(val);
-      showCurrentTurn();
+      updatePlayerTurn(val);
+      displayTurn();
       makeSound(computerMoveSound);
     }, delay);
   }
 }
 
-function showCurrentTurn() {
+//
+//
+//
+//
+//
+
+function updateInterface(p1Sign, p2Sign, opponent) {
+  player1Name.textContent = `Player 1 (${p1Sign})`;
+  player2Name.textContent = `${opponent === "computer" ? "Computer " : "Player 2"} (${p2Sign})`;
+  displayTurn();
+}
+function displayTurn() {
   if (currPlayer === player1Sign) {
     player1Name.style.color = "white";
     player2Name.style.color = "var(--light-grey)";
@@ -111,22 +118,15 @@ function showCurrentTurn() {
     player1Name.style.color = "var(--light-grey)";
   }
 }
-
-function updateCurrentPlayer(val) {
-  if (player1Sign === currPlayer) {
-    val.textContent = player1Sign;
+function updatePlayerTurn(val) {
+  val.textContent = currPlayer;
+  // update the current player
+  if (currPlayer === player1Sign) {
     currPlayer = player2Sign;
-  } else if (player2Sign === currPlayer) {
-    val.textContent = player2Sign;
+  } else if (currPlayer === player2Sign) {
     currPlayer = player1Sign;
   }
 }
-
-//
-//
-//
-//
-//
 //
 //
 // Switch Mute/Unmute Icons Top-Right Corner
@@ -156,8 +156,8 @@ opponentFriend.addEventListener("click", (event) => {
 });
 
 function makeSound(sound) {
-  if (mutedIcon.classList.contains("hidden")) {
-    sound.currentTime = 0;
-    sound.play();
-  }
+  if (unmutedIcon.classList.contains("hidden")) return;
+  // console.log(sound);
+  sound.currentTime = 0;
+  sound.play();
 }

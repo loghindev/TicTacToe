@@ -46,11 +46,41 @@ main {
   row-gap: 2em;
   text-align: center;
 }
+#startBtn {
+  font-size: 1.5em;
+  padding: 2px 12px;
+  border: 1px solid var(--medium-grey);
+  background-color: transparent;
+  color: var(--light-grey);
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+#startBtn:hover {
+  background-color: var(--dark-grey);
+  border-color: var(--dark-grey);
+}
+#startBtn:active {
+  background-color: var(--medium-grey);
+  transform: translate(2px, 2px) scale(0.8);
+}
 /* ----- Score Board ----- */
 #scoreBoard > div[id] {
   display: inline-block;
   margin: 1.2em;
   font-size: 1.3em;
+}
+#scoreBoard .header {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}
+#scoreBoard .spinner {
+  width: 1rem;
+  height: 1rem;
+  border: 4px solid var(--dark-grey);
+  border-top-color: transparent;
+  border-radius: 50%;
+  visibility: hidden;
 }
 
 /* ----- Gameboard ----- */
@@ -114,6 +144,14 @@ main {
 .hidden {
   display: none;
 }
+.hide-btn {
+  visibility: hidden;
+}
+
+.show-spinner {
+  visibility: visible !important;
+  animation: spin 2s linear infinite;
+}
 
 .fade-in {
   animation-name: fade-in;
@@ -125,6 +163,11 @@ main {
 @keyframes fade-in {
   from {
     transform: scale(0);
+  }
+}
+@keyframes spin {
+  to {
+    transform: rotateZ(360deg);
   }
 }
 
@@ -140,6 +183,11 @@ main {
   }
   #scoreBoard > div[id] {
     display: inline-block;
-    margin: 0 0.35em;
+    margin: 0 0.45em;
+  }
+  #scoreBoard .header {
+    display: flex;
+    flex-direction: column-reverse;
+    row-gap: 8px;
   }
 }

@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" type="image/png" href="./images/favicon.png" />
     <title>Tic Tac Toe</title>
     <link rel="stylesheet" type="text/css" href="./style.css" />
   </head>
@@ -46,20 +47,27 @@
     </header>
     <main>
       <div id="container">
+        <button id="startBtn">Start</button>
         <div id="gameboard"></div>
 
         <div id="scoreBoard">
           <div id="player1">
-            <p id="name">Player 1 (X)</p>
-            <p id="scoreValue">0</p>
+            <div class="header">
+              <p class="name">Player 1 (X)</p>
+              <div class="spinner"></div>
+            </div>
+            <p class="scoreValue">0</p>
           </div>
           <div id="tie">
             <p>Tie</p>
-            <p id="scoreValue">0</p>
+            <p class="scoreValue">0</p>
           </div>
           <div id="player2">
-            <p id="name">Player 2 (0)</p>
-            <p id="scoreValue">0</p>
+            <div class="header">
+              <p class="name">Player 2 (0)</p>
+              <div class="spinner"></div>
+            </div>
+            <p class="scoreValue">0</p>
           </div>
           <div id="opponentOption">
             <div id="vsBot">
