@@ -11,38 +11,38 @@
     <header>
       <div id="audio-container">
         <audio src="./sounds/userMoveSound.mp3" id="userMoveSound" type="audio/mp3" preload="auto"></audio>
-        <audio
-          src="./sounds/computerMoveSound.mp3"
-          id="computerMoveSound"
-          type="audio/mp3"
-          preload="auto"
-        ></audio>
+        <audio src="./sounds/computerMoveSound.mp3" id="computerMoveSound" type="audio/mp3" preload="auto"></audio>
       </div>
-      <div id="audio-controls">
-        <svg
-          id="mutedIcon"
-          xmlns="http://www.w3.org/2000/svg"
-          width="50px"
-          height="50px"
-          viewBox="-1.5 0 19 19"
-          class="cf-icon-svg hidden"
-        >
-          <path
-            d="M7.676 4.938v9.63c0 .61-.353.756-.784.325l-2.896-2.896H2.02A1.111 1.111 0 0 1 .911 10.89V8.618a1.112 1.112 0 0 1 1.108-1.109h1.977l2.896-2.896c.43-.43.784-.284.784.325zm7.251 6.888a.554.554 0 1 1-.784.784l-2.072-2.073-2.073 2.073a.554.554 0 1 1-.784-.784l2.073-2.073L9.214 7.68a.554.554 0 0 1 .784-.783L12.07 8.97l2.072-2.073a.554.554 0 0 1 .784.783l-2.072 2.073z"
-          />
-        </svg>
-        <svg
-          id="unmutedIcon"
-          xmlns="http://www.w3.org/2000/svg"
-          width="50px"
-          height="50px"
-          viewBox="-2.5 0 19 19"
-          class="cf-icon-svg"
-        >
-          <path
-            d="M7.365 4.785v9.63c0 .61-.353.756-.784.325l-2.896-2.896H1.708A1.112 1.112 0 0 1 .6 10.736V8.464a1.112 1.112 0 0 1 1.108-1.108h1.977L6.581 4.46c.43-.43.784-.285.784.325zm2.468 7.311a3.53 3.53 0 0 0 0-4.992.554.554 0 0 0-.784.784 2.425 2.425 0 0 1 0 3.425.554.554 0 1 0 .784.783zm1.791 1.792a6.059 6.059 0 0 0 0-8.575.554.554 0 1 0-.784.783 4.955 4.955 0 0 1 0 7.008.554.554 0 1 0 .784.784z"
-          />
-        </svg>
+      <div id="settings">
+        <div class="reset-scoreboard">
+          <p id="resetScore">Reset Score</p>
+        </div>
+        <div class="audio-controls">
+          <svg
+            id="mutedIcon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="50px"
+            height="50px"
+            viewBox="-1.5 0 19 19"
+            class="cf-icon-svg hidden"
+          >
+            <path
+              d="M7.676 4.938v9.63c0 .61-.353.756-.784.325l-2.896-2.896H2.02A1.111 1.111 0 0 1 .911 10.89V8.618a1.112 1.112 0 0 1 1.108-1.109h1.977l2.896-2.896c.43-.43.784-.284.784.325zm7.251 6.888a.554.554 0 1 1-.784.784l-2.072-2.073-2.073 2.073a.554.554 0 1 1-.784-.784l2.073-2.073L9.214 7.68a.554.554 0 0 1 .784-.783L12.07 8.97l2.072-2.073a.554.554 0 0 1 .784.783l-2.072 2.073z"
+            />
+          </svg>
+          <svg
+            id="unmutedIcon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="50px"
+            height="50px"
+            viewBox="-2.5 0 19 19"
+            class="cf-icon-svg"
+          >
+            <path
+              d="M7.365 4.785v9.63c0 .61-.353.756-.784.325l-2.896-2.896H1.708A1.112 1.112 0 0 1 .6 10.736V8.464a1.112 1.112 0 0 1 1.108-1.108h1.977L6.581 4.46c.43-.43.784-.285.784.325zm2.468 7.311a3.53 3.53 0 0 0 0-4.992.554.554 0 0 0-.784.784 2.425 2.425 0 0 1 0 3.425.554.554 0 1 0 .784.783zm1.791 1.792a6.059 6.059 0 0 0 0-8.575.554.554 0 1 0-.784.783 4.955 4.955 0 0 1 0 7.008.554.554 0 1 0 .784.784z"
+            />
+          </svg>
+        </div>
       </div>
     </header>
     <main>
@@ -53,21 +53,21 @@
         <div id="scoreBoard">
           <div id="player1">
             <div class="header">
-              <p class="name">Player 1 (X)</p>
+              <p class="name"></p>
               <div class="spinner"></div>
             </div>
-            <p class="scorespanue">0</p>
+            <p class="score"></p>
           </div>
           <div id="tie">
             <p>Tie</p>
-            <p class="scorespanue">0</p>
+            <p class="score"></p>
           </div>
           <div id="player2">
             <div class="header">
-              <p class="name">Player 2 (0)</p>
+              <p class="name"></p>
               <div class="spinner"></div>
             </div>
-            <p class="scorespanue">0</p>
+            <p class="score"></p>
           </div>
           <div id="opponentOption">
             <div id="vsBot">

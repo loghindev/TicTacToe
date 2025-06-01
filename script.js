@@ -2,23 +2,20 @@ const userMoveSound = document.getElementById("userMoveSound");
 const computerMoveSound = document.getElementById("computerMoveSound");
 const mutedIcon = document.getElementById("mutedIcon");
 const unmutedIcon = document.getElementById("unmutedIcon");
+const resetScoreBtn = document.getElementById("resetScore");
 const startBtn = document.getElementById("startBtn");
 const gameboard = document.getElementById("gameboard");
 const player1Name = document.querySelector("#scoreBoard #player1 .name");
-const player1Score = document.querySelector("#scoreBoard #player1 .scorespanue");
+const player1Score = document.querySelector("#scoreBoard #player1 .score");
 const player1Spinner = document.querySelector("#scoreBoard #player1 .spinner");
 const player2Name = document.querySelector("#scoreBoard #player2 .name");
-const player2Scoare = document.querySelector("#scoreBoard #player2 .scorespanue");
+const player2Score = document.querySelector("#scoreBoard #player2 .score");
 const player2Spinner = document.querySelector("#scoreBoard #player2 .spinner");
-const tieScore = document.querySelector("#scoreBoard #tie .scorespanue");
+const tieScore = document.querySelector("#scoreBoard #tie .score");
 const opponentComputer = document.querySelector("#scoreBoard #opponentOption #vsBot");
 const opponentFriend = document.querySelector("#scoreBoard #opponentOption #vsFriend");
-const score = {
-  player1: 0,
-  player2: 0,
-  tie: 0,
-};
 
+let gameOver = false;
 let pending = false;
 const THREE = 3;
 const opponents = ["computer", "friend"];
@@ -34,15 +31,15 @@ function setPlayer2() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  generateGameboard(); // sets 'click' event listeners on each cell already
-  // when page loads -> user vs computer (default);
+  loadGameSettings();
+  generateGameboard();
   updateInterface(player1Sign, player2Sign, opponentType);
 
   startBtn.addEventListener("click", () => {
     startBtn.classList.add("hide-btn");
     startBtn.disabled = true;
+    updateSpinnerDisplay();
     if (currPlayer === player2Sign && opponentType === "computer") {
-      console.log("Computer a mutat in 'DOMContentLoaded'");
       pending = true;
       awaitComputerMove(currPlayer, Math.floor(Math.random() * 800) + 800);
     }
@@ -60,11 +57,10 @@ function generateGameboard() {
     }
   }
 }
-function setCell(event) {
-  if (event.target.textContent !== "" || pending || !startBtn.classList.contains("hide-btn")) return;
-  // check the current player to know what type of cell to set
 
-  console.log("Eu am mutat in 'setCell()'");
+function setCell(event) {
+  if (event.target.textContent !== "" || pending || gameOver || !startBtn.classList.contains("hide-btn")) return;
+
   const span = document.createElement("span");
   span.classList = "fade-in";
   span.textContent = currPlayer;
@@ -72,11 +68,12 @@ function setCell(event) {
   currPlayer === player1Sign ? makeSound(userMoveSound) : makeSound(computerMoveSound);
   updateCurrentPlayer();
   updateTurnColors();
+  updateSpinnerDisplay();
+  checkWinner();
 
-  if (opponentType === "computer") {
-    console.log("Computer a mutat in 'setCell()'");
+  if (opponentType === "computer" && !gameOver) {
     pending = true;
-    awaitComputerMove(currPlayer, Math.floor(Math.random() * 800) + 800);
+    awaitComputerMove(currPlayer, Math.floor(Math.random() * 1000) + 1000);
   }
 }
 
@@ -84,29 +81,36 @@ function awaitComputerMove(currPlayer, delay) {
   const emptyCells = Array.from(document.querySelectorAll("#gameboard .cell")).filter(
     (cell) => cell.querySelector("span") === null
   );
-  console.log(emptyCells);
 
   if (emptyCells.length) {
     const span = document.createElement("span");
     setTimeout(() => {
-      pending = false;
       span.classList = "fade-in";
       span.textContent = currPlayer;
       emptyCells[Math.floor(Math.random() * emptyCells.length)].appendChild(span);
+      pending = false;
+      makeSound(computerMoveSound);
       updateCurrentPlayer();
       updateTurnColors();
-      makeSound(computerMoveSound);
+      updateSpinnerDisplay();
+      checkWinner();
     }, delay);
   }
 }
 
-//
-//
-//
-//
-//
+function updateSpinnerDisplay() {
+  if (!startBtn.classList.contains("hide-btn")) return;
+  if (currPlayer === player1Sign) {
+    player1Spinner.classList.add("show-spinner");
+    player2Spinner.classList.remove("show-spinner");
+  } else if (currPlayer === player2Sign) {
+    player2Spinner.classList.add("show-spinner");
+    player1Spinner.classList.remove("show-spinner");
+  }
+}
 
 function updateInterface(p1Sign, p2Sign, opponent) {
+  // Update the interface when switch the opponent
   player1Name.textContent = `Player 1 (${p1Sign})`;
   player2Name.textContent = `${opponent === "computer" ? "Computer " : "Player 2"} (${p2Sign})`;
   updateTurnColors();
@@ -128,18 +132,16 @@ function updateCurrentPlayer() {
     currPlayer = player1Sign;
   }
 }
-//
-//
+
 // Switch Mute/Unmute Icons Top-Right Corner
 unmutedIcon.addEventListener("click", () => {
   unmutedIcon.classList.add("hidden");
   mutedIcon.classList.remove("hidden");
-  // stop sounds - to be continued
 });
+
 mutedIcon.addEventListener("click", () => {
   mutedIcon.classList.add("hidden");
   unmutedIcon.classList.remove("hidden");
-  // start sounds - to be continued
 });
 
 // Update Interface according to the Opponent Type
@@ -161,3 +163,91 @@ function makeSound(sound) {
   sound.currentTime = 0;
   sound.play();
 }
+
+function checkWinner() {
+  const cells = Array.from(gameboard.querySelectorAll(".cell")).map((cell) => {
+    if (cell.querySelector("span") !== null) {
+      return cell;
+    }
+    return undefined;
+  });
+  console.log(cells);
+  for (let array of winnerCases) {
+    if (gameOver) break;
+    if (cells[array[0]] !== undefined && cells[array[1]] !== undefined && cells[array[2]] !== undefined) {
+      // console.log("Pot verifica in ", array);
+      console.log(
+        `Pot verifica: ${cells[array[0]].textContent} ${cells[array[1]].textContent} ${cells[array[2]].textContent}`
+      );
+      if (
+        cells[array[0]].textContent === cells[array[1]].textContent &&
+        cells[array[1]].textContent === cells[array[2]].textContent
+      ) {
+        if (cells[array[0]].textContent === player1Sign) {
+          console.warn(`Winner ${player1Sign}`);
+          updateScoreboard(player1Score);
+        } else if (cells[array[0]].textContent === player2Sign) {
+          console.warn(`Winner ${player2Sign}`);
+          updateScoreboard(player2Score);
+        }
+        gameOver = true;
+      }
+    }
+  }
+}
+
+function updateScoreboard(score) {
+  let scoreValue = Number(score.textContent);
+  score.textContent = (++scoreValue).toString();
+  saveGameSettings();
+}
+
+function saveGameSettings() {
+  localStorage.setItem("player1Score", player1Score.textContent);
+  localStorage.setItem("player2Score", player2Score.textContent);
+  localStorage.setItem("tieScore", tieScore.textContent);
+  localStorage.setItem("opponent", opponentType);
+  console.log(localStorage);
+}
+
+function loadGameSettings() {
+  if (localStorage.getItem("player1Score") !== null) {
+    player1Score.textContent = localStorage.getItem("player1Score");
+  } else {
+    player1Score.textContent = "0";
+  }
+  if (localStorage.getItem("player2Score") !== null) {
+    player2Score.textContent = localStorage.getItem("player2Score");
+  } else {
+    player2Score.textContent = "0";
+  }
+  if (localStorage.getItem("tieScore") !== null) {
+    tieScore.textContent = localStorage.getItem("tieScore");
+  } else {
+    tieScore.textContent = "0";
+  }
+  if (localStorage.getItem("opponent") !== null) {
+    opponentType = localStorage.getItem("opponent");
+  } else {
+    opponentType = opponents[0]; // vs computer (default)
+  }
+}
+
+resetScoreBtn.addEventListener("click", resetGameSettings);
+
+function resetGameSettings() {
+  localStorage.clear();
+  console.log(localStorage);
+  loadGameSettings();
+}
+
+const winnerCases = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6],
+];

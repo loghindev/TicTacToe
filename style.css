@@ -5,6 +5,7 @@
   --medium-grey: #7f7f7d;
   --light-grey: #a5a5a4;
   --border-width: 3px;
+  --purple: #6f41b9;
 }
 * {
   margin: 0;
@@ -21,14 +22,28 @@ body {
   color: var(--light-grey);
   height: 100vh;
 }
-header {
-  text-align: right;
+/* ----- Settings ----- */
+#settings {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-#audio-controls svg {
+#settings #resetScore {
+  margin-left: 12px;
+  padding: 3px;
+  font-size: 1.1em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.08s ease;
+}
+#settings #resetScore:hover {
+  color: var(--purple);
+}
+#settings svg {
   fill: var(--dark-grey);
   cursor: pointer;
 }
-#audio-controls svg:active {
+#settings svg:active {
   fill: var(--medium-grey);
 }
 main {
@@ -150,7 +165,7 @@ main {
 
 .show-spinner {
   visibility: visible !important;
-  animation: spin 2s linear infinite;
+  animation: spin 6s linear infinite;
 }
 
 .fade-in {
@@ -162,7 +177,7 @@ main {
 /* ------ animations ----- */
 @keyframes fade-in {
   from {
-    transform: scale(0);
+    transform: scale(0.3);
   }
 }
 @keyframes spin {
