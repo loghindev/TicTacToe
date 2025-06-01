@@ -1,0 +1,145 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Unbounded:wght@200..900&display=swap");
+:root {
+  --bg-color: #131214;
+  --dark-grey: #414040;
+  --medium-grey: #7f7f7d;
+  --light-grey: #a5a5a4;
+  --border-width: 3px;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Raleway", sans-serif;
+  user-select: none;
+}
+html::-webkit-scrollbar {
+  width: 0;
+}
+body {
+  background-color: var(--bg-color);
+  color: var(--light-grey);
+  height: 100vh;
+}
+header {
+  text-align: right;
+}
+#audio-controls svg {
+  fill: var(--dark-grey);
+  cursor: pointer;
+}
+#audio-controls svg:active {
+  fill: var(--medium-grey);
+}
+main {
+  height: calc(100% - 54px); /* 54px - header's height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#container {
+  /* border: 1px solid white; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 2em;
+  text-align: center;
+}
+/* ----- Score Board ----- */
+#scoreBoard > div[id] {
+  display: inline-block;
+  margin: 1.2em;
+  font-size: 1.3em;
+}
+
+/* ----- Gameboard ----- */
+#gameboard {
+  display: grid;
+  grid-template-rows: repeat(3, 150px);
+  grid-template-columns: repeat(3, 150px);
+}
+#gameboard > .cell {
+  border-style: solid;
+  border-color: var(--dark-grey);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 6em;
+}
+#gameboard > .cell > span {
+  font-family: "Unbounded", sans-serif;
+}
+
+#gameboard > .cell[id="0-0"] {
+  border-width: 0 var(--border-width) 2px 0;
+}
+#gameboard > *[id="0-1"] {
+  border-width: 0 var(--border-width) var(--border-width) var(--border-width);
+}
+#gameboard > *[id="0-2"] {
+  border-width: 0 0 var(--border-width) var(--border-width);
+}
+#gameboard > *[id="1-0"] {
+  border-width: var(--border-width) var(--border-width) var(--border-width) 0;
+}
+#gameboard > *[id="1-2"] {
+  border-width: var(--border-width) 0 var(--border-width) var(--border-width);
+}
+#gameboard > *[id="2-0"] {
+  border-width: var(--border-width) var(--border-width) 0 0;
+}
+#gameboard > *[id="2-1"] {
+  border-width: var(--border-width) var(--border-width) 0 var(--border-width);
+}
+#gameboard > *[id="2-1"] {
+  border-width: var(--border-width) var(--border-width) 0 var(--border-width);
+}
+#gameboard > *[id="2-2"] {
+  border-width: var(--border-width) 0 0 var(--border-width);
+}
+
+/* ----- Opponent Options ----- */
+#opponentOption > * {
+  cursor: pointer;
+}
+#opponentOption #icon {
+  fill: var(--medium-grey);
+  width: 40px;
+  height: 40px;
+}
+
+/* ----- Utility classes ----- */
+.hidden {
+  display: none;
+}
+
+.fade-in {
+  animation-name: fade-in;
+  animation-duration: 0.15s;
+  animation-timing-function: ease;
+}
+
+/* ------ animations ----- */
+@keyframes fade-in {
+  from {
+    transform: scale(0);
+  }
+}
+
+/* ----- mobile ----- */
+@media screen and (max-width: 600px) {
+  #gameboard {
+    display: grid;
+    grid-template-rows: repeat(3, 105px);
+    grid-template-columns: repeat(3, 105px);
+  }
+  #gameboard > .cell {
+    font-size: 4.5em;
+  }
+  #scoreBoard > div[id] {
+    display: inline-block;
+    margin: 0 0.35em;
+  }
+}
