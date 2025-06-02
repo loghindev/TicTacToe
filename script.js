@@ -54,7 +54,6 @@ function generateGameboard() {
     }
   }
 }
-
 function setCell(event) {
   if (event.target.textContent !== "" || pending || gameOver || !startBtn.classList.contains("hide-btn")) return;
   ++moves;
@@ -73,7 +72,6 @@ function setCell(event) {
     awaitComputerMove(currPlayer, Math.floor(Math.random() * 1000) + 1000);
   }
 }
-
 function awaitComputerMove(currPlayer, delay) {
   ++moves;
   const emptyCells = Array.from(document.querySelectorAll("#gameboard .cell")).filter(
@@ -95,7 +93,6 @@ function awaitComputerMove(currPlayer, delay) {
     }, delay);
   }
 }
-
 function checkWinner() {
   const cells = Array.from(gameboard.querySelectorAll(".cell")).map((cell) => {
     if (cell.querySelector("span") !== null) {
@@ -129,7 +126,6 @@ function checkWinner() {
     resetGame();
   }
 }
-
 function resetGame() {
   currPlayer = [player1Sign, player2Sign][Math.floor(Math.random() * 2)];
   updateSpinnerDisplay();
@@ -146,7 +142,6 @@ function resetGame() {
   }, 5500);
   moves = 0;
 }
-
 function clearGameboard() {
   const filledCells = Array.from(gameboard.querySelectorAll(".cell"))
     .map((cell) => (cell.firstElementChild !== null ? cell.firstElementChild : null))
@@ -268,30 +263,27 @@ opponentComputer.addEventListener("click", (event) => {
   opponentFriend.classList.remove("hidden");
   opponentType = opponents[1];
   localStorage.setItem("opponent", opponentType);
-  resetGame();
-  updateInterface(player1Sign, player2Sign, opponents[1]);
+  window.location.reload();
 });
 opponentFriend.addEventListener("click", (event) => {
   opponentFriend.classList.add("hidden");
   opponentComputer.classList.remove("hidden");
   opponentType = opponents[0];
   localStorage.setItem("opponent", opponentType);
-  updateInterface(player1Sign, player2Sign, opponents[0]);
+  window.location.reload();
 });
 
-// ---------- Reset Score ----------
 resetScoreBtn.addEventListener("click", resetGameSettings);
+
 function resetGameSettings() {
   localStorage.clear();
   loadGameSettings();
 }
-
 function makeSound(sound) {
   if (unmutedIcon.classList.contains("hidden")) return;
   sound.currentTime = 0;
   sound.play();
 }
-
 const winnerCases = [
   [0, 1, 2],
   [3, 4, 5],

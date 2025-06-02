@@ -4,9 +4,9 @@
   --dark-grey: hsl(0, 1%, 25%);
   --medium-grey: hsl(60, 1%, 49%);
   --light-grey: hsl(60, 1%, 65%);
-  --border-width: 3px;
   --purple: hsl(263, 48%, 49%);
   --dark-purple: hsl(264, 13%, 31%);
+  --border-width: 3px;
 }
 * {
   margin: 0;
@@ -48,13 +48,12 @@ body {
   fill: var(--medium-grey);
 }
 main {
-  height: calc(100% - 54px); /* 54px - header's height */
+  height: calc(100% - 54px); /* 54px - header height */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 #container {
-  /* border: 1px solid white; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -118,7 +117,6 @@ main {
 #gameboard > .cell > span {
   font-family: "Unbounded", sans-serif;
 }
-
 #gameboard > .cell[id="0-0"] {
   border-width: 0 var(--border-width) 2px 0;
 }
@@ -147,7 +145,7 @@ main {
   border-width: var(--border-width) 0 0 var(--border-width);
 }
 
-/* ----- Opponent Options ----- */
+/* ----- Opponent ----- */
 #opponentOption > * {
   cursor: pointer;
 }
@@ -164,12 +162,10 @@ main {
 .hide-btn {
   visibility: hidden;
 }
-
 .show-spinner {
   visibility: visible !important;
   animation: spin 6s linear infinite;
 }
-
 .fade-in {
   animation-name: fade-in;
   animation-duration: 0.15s;
@@ -180,7 +176,6 @@ main {
   animation-duration: 0.5s;
   animation-timing-function: ease;
 }
-
 .highlight-cell {
   color: var(--purple);
   transition: color 2.6s ease;
@@ -195,7 +190,7 @@ main {
   border-color: var(--dark-purple) !important;
 }
 
-/* ------ animations ----- */
+/* ----- Keyframes ----- */
 @keyframes fade-in {
   from {
     transform: scale(0.3);
