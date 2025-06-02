@@ -1,11 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Unbounded:wght@200..900&display=swap");
 :root {
-  --bg-color: #131214;
-  --dark-grey: #414040;
-  --medium-grey: #7f7f7d;
-  --light-grey: #a5a5a4;
+  --bg-color: hsl(270, 5%, 7%);
+  --dark-grey: hsl(0, 1%, 25%);
+  --medium-grey: hsl(60, 1%, 49%);
+  --light-grey: hsl(60, 1%, 65%);
   --border-width: 3px;
-  --purple: #6f41b9;
+  --purple: hsl(263, 48%, 49%);
+  --dark-purple: hsl(264, 13%, 31%);
 }
 * {
   margin: 0;
@@ -112,6 +113,7 @@ main {
   justify-content: center;
   align-items: center;
   font-size: 6em;
+  transition: border-color 0.75s ease;
 }
 #gameboard > .cell > span {
   font-family: "Unbounded", sans-serif;
@@ -173,6 +175,25 @@ main {
   animation-duration: 0.15s;
   animation-timing-function: ease;
 }
+.fade-out {
+  animation-name: fade-out;
+  animation-duration: 0.5s;
+  animation-timing-function: ease;
+}
+
+.highlight-cell {
+  color: var(--purple);
+  transition: color 2.6s ease;
+}
+.blink {
+  font-weight: bold;
+  color: var(--purple);
+  animation: blink 0.5s;
+  animation-iteration-count: 8;
+}
+.loading-border {
+  border-color: var(--dark-purple) !important;
+}
 
 /* ------ animations ----- */
 @keyframes fade-in {
@@ -180,9 +201,19 @@ main {
     transform: scale(0.3);
   }
 }
+@keyframes fade-out {
+  to {
+    transform: scale(0);
+  }
+}
 @keyframes spin {
   to {
     transform: rotateZ(360deg);
+  }
+}
+@keyframes blink {
+  50% {
+    color: transparent;
   }
 }
 
