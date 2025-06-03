@@ -2,9 +2,9 @@
 
 | Option                                                                              | Opponent Type   | Game                   | Scoreboard                                   |
 | ----------------------------------------------------------------------------------- | --------------- | ---------------------- | -------------------------------------------- |
-| <img src="./images/opponentType_computer.png" width="66" alt="opponent_computer" /> | `Computer`      | You vs Computer        | Does **NOT** reset the score `automatically` |
-| <img src="./images/opponentType_friend.png" width="66" alt="opponent_friend" />     | `Friend`        | You vs Friend          | Does **NOT** reset the score `automatically` |
-| <img src="./images/resetScore.png" width="90px" alt="reset_score_button" />         | `Opponent Type` | You vs `Opponent Type` | Resets `manually` Scoreboard to `0`          |
+| <img src="./images/opponentType_computer.png" width="56" alt="opponent_computer" /> | `Computer`      | You vs Computer        | Does **NOT** reset the score `automatically` |
+| <img src="./images/opponentType_friend.png" width="56" alt="opponent_friend" />     | `Friend`        | You vs Friend          | Does **NOT** reset the score `automatically` |
+| <img src="./images/resetScore.png" width="100px" alt="reset_score_button" />         | `Opponent Type` | You vs `Opponent Type` | Resets `manually` Scoreboard to `0`          |
 
 ## About Opponent Types
 
