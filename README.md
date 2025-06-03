@@ -19,4 +19,5 @@
 >
 > For mobile devices, sound effects are not stable (<ins>ref:</ins> _audio autoplay policies on mobile devices_)
 
- <img src="https://cdn-icons-png.flaticon.com/512/18975/18975212.png" width="100" alt="game_icon" align="right" />
+Play it here: [Tic Tac Toe](https://loghindev.github.io/TicTacToe/)
+<img src="https://cdn-icons-png.flaticon.com/512/18975/18975212.png" width="100" alt="game_icon" align="right" />
