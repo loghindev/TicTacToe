@@ -8,6 +8,8 @@
 
 ## About Opponent Types
 
+<img src="https://cdn-icons-png.flaticon.com/512/18975/18975212.png" width="100" alt="game_icon" align="right" />
+
 1. `Computer`
    - After it detects your move, it takes somewhere between `0.6s` and `1.6s` to think.
 2. `Friend`
@@ -19,5 +21,4 @@
 >
 > For mobile devices, sound effects are not stable (<ins>ref:</ins> _audio autoplay policies on mobile devices_)
 
-Play it here: [Tic Tac Toe](https://loghindev.github.io/TicTacToe/)
-<img src="https://cdn-icons-png.flaticon.com/512/18975/18975212.png" width="100" alt="game_icon" align="right" />
+**Play it here**: [Tic Tac Toe](https://loghindev.github.io/TicTacToe/)
