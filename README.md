@@ -1,7 +1,5 @@
 # TicTacToe mini-project
 
-> <img src="https://cdn-icons-png.flaticon.com/512/18975/18975212.png" width="100" alt="game_icon" align="right" />
-
 | Option                                               | Opponent Type   | Game                   | Scoreboard                                   |
 | ---------------------------------------------------- | --------------- | ---------------------- | -------------------------------------------- |
 | ![computer_icon](./images/opponentType_computer.png) | `Computer`      | You vs Computer        | Does **NOT** reset the score `automatically` |
@@ -20,3 +18,5 @@
 > #### Known Issue
 >
 > For mobile devices, sound effects are not stable (<ins>ref:</ins> _audio autoplay policies on mobile devices_)
+
+ <img src="https://cdn-icons-png.flaticon.com/512/18975/18975212.png" width="100" alt="game_icon" align="right" />
