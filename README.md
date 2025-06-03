@@ -1,10 +1,10 @@
 # TicTacToe mini-project
 
-| Option                                                                              | Opponent Type   | Game                   | Scoreboard                                   |
-| ----------------------------------------------------------------------------------- | --------------- | ---------------------- | -------------------------------------------- |
-| <img src="./images/opponentType_computer.png" width="56" alt="opponent_computer" /> | `Computer`      | You vs Computer        | Does **NOT** reset the score `automatically` |
-| <img src="./images/opponentType_friend.png" width="56" alt="opponent_friend" />     | `Friend`        | You vs Friend          | Does **NOT** reset the score `automatically` |
-| <img src="./images/resetScore.png" width="100px" alt="reset_score_button" />         | `Opponent Type` | You vs `Opponent Type` | Resets `manually` Scoreboard to `0`          |
+| Option                                                                                                        | Opponent Type   | Game                   | Scoreboard                                   |
+| -----------------------------------------------------------------------------------------------------         | --------------- | ---------------------- | -------------------------------------------- |
+| <div align="center"><img src="./images/opponentType_computer.png" width="56" alt="opponent_computer" /></div> | `Computer`      | You vs Computer        | Does **NOT** reset the score `automatically` |
+| <div align="center">  <img src="./images/opponentType_friend.png" width="56" alt="opponent_friend" /></div>   | `Friend`        | You vs Friend          | Does **NOT** reset the score `automatically` |
+| <div align="center"><img src="./images/resetScore.png" width="100px" alt="reset_score_button" /></div>        | `Opponent Type` | You vs `Opponent Type` | Resets `manually` Scoreboard to `0`          |
 
 ## About Opponent Types
 
@@ -21,4 +21,4 @@
 >
 > For mobile devices, sound effects are not stable (<ins>ref:</ins> _audio autoplay policies on mobile devices_)
 
-**Play it here**: [Tic Tac Toe](https://loghindev.github.io/TicTacToe/)
+🚀 **Play it here**: [Tic Tac Toe](https://loghindev.github.io/TicTacToe/)
