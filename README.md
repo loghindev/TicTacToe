@@ -2,11 +2,11 @@
 
 > <img src="https://cdn-icons-png.flaticon.com/512/18975/18975212.png" width="100" alt="game_icon" align="right" />
 
-| Option                                                  | Opponent Type   | Game                   | Scoreboard                                   |
-| ------------------------------------------------------- | --------------- | ---------------------- | -------------------------------------------- |
-| ![computer_icon](./images/opponentType_computer.png)    | `Computer`      | You vs Computer        | Does **NOT** reset the score `automatically` |
-| ![friend_icon](./images/opponentType_friend.png)        | `Friend`        | You vs Friend          | Does **NOT** reset the score `automatically` |
-| ![score_reset_button](./images/opponentType_friend.png) | `Opponent Type` | You vs `Opponent Type` | Resets `manually` Scoreboard to `0`          |
+| Option                                               | Opponent Type   | Game                   | Scoreboard                                   |
+| ---------------------------------------------------- | --------------- | ---------------------- | -------------------------------------------- |
+| ![computer_icon](./images/opponentType_computer.png) | `Computer`      | You vs Computer        | Does **NOT** reset the score `automatically` |
+| ![friend_icon](./images/opponentType_friend.png)     | `Friend`        | You vs Friend          | Does **NOT** reset the score `automatically` |
+| ![score_reset_button](./images/resetScore.png)       | `Opponent Type` | You vs `Opponent Type` | Resets `manually` Scoreboard to `0`          |
 
 ## About Opponent Types
 
