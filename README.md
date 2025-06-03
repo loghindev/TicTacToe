@@ -1,3 +1,22 @@
-# TicTacToe mini-project  
+# TicTacToe mini-project
 
-Live demo: [Tic Tac Toe](https://loghindev.github.io/TicTacToe/)
+> <img src="https://cdn-icons-png.flaticon.com/512/18975/18975212.png" width="100" alt="game_icon" align="right" />
+
+| Option                                                  | Opponent Type   | Game                   | Scoreboard                                   |
+| ------------------------------------------------------- | --------------- | ---------------------- | -------------------------------------------- |
+| ![computer_icon](./images/opponentType_computer.png)    | `Computer`      | You vs Computer        | Does **NOT** reset the score `automatically` |
+| ![friend_icon](./images/opponentType_friend.png)        | `Friend`        | You vs Friend          | Does **NOT** reset the score `automatically` |
+| ![score_reset_button](./images/opponentType_friend.png) | `Opponent Type` | You vs `Opponent Type` | Resets `manually` Scoreboard to `0`          |
+
+## About Opponent Types
+
+1. `Computer`
+   - After it detects your move, it takes somewhere between `0.6s` and `1.6s` to think.
+2. `Friend`
+   - Perfect for playing in `2`, but you can also play solo 🥸
+
+> [!NOTE]
+>
+> #### Known Issue
+>
+> For mobile devices, sound effects are not stable (<ins>ref:</ins> _audio autoplay policies on mobile devices_)
