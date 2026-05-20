@@ -1,0 +1,136 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body {
+    height: 100vh;
+    padding: 0.75rem;
+    background-color: #111;
+    color: #eee;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* @HEADER */
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+header .opponent-type {
+    display: flex;
+    column-gap: 0.5rem;
+}
+header .opponent-type > * {
+    padding: 9px 9px 4px 9px;
+    border-radius: 50%;
+    corner-shape: squircle;
+    transition: background-color 0.2s ease;
+}
+header .opponent-type > *.active-opponent {
+    background-color: hsl(288, 5%, 19%);
+}
+
+/* @MAIN */
+main {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* @game - board */
+#board {
+    width: calc(150px * 3);
+    height: calc(150px * 3);
+    display: flex;
+    flex-wrap: wrap;
+}
+#board > * {
+    width: 150px;
+    height: 150px;
+    border: 3px solid hsl(0, 0%, 35%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 6rem;
+    cursor: pointer;
+}
+#board > *:nth-child(1) {
+    border-width: 0 3px 3px 0;
+}
+#board > *:nth-child(2) {
+    border-width: 0 3px 3px 3px;
+}
+#board > *:nth-child(3) {
+    border-width: 0 0 3px 3px;
+}
+#board > *:nth-child(4) {
+    border-width: 3px 3px 3px 0;
+}
+#board > *:nth-child(5) {
+    border-width: 3px;
+}
+#board > *:nth-child(6) {
+    border-width: 3px 0 3px 3px;
+}
+#board > *:nth-child(7) {
+    border-width: 3px 3px 0 0;
+}
+#board > *:nth-child(8) {
+    border-width: 3px 3px 0 3px;
+}
+#board > *:nth-child(9) {
+    border-width: 3px 0 0 3px;
+}
+
+/* @scoreboard */
+#score {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    font-size: 1.1rem;
+}
+#score > * {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 6px;
+}
+#score .player-1 > *:first-of-type,
+#score .player-2 > *:first-of-type {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+#score .loader {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: hsl(0, 0%, 34%);
+    box-shadow: 0 0 12px hsl(0, 0%, 19%);
+}
+
+/* @footer */
+footer a {
+    display: block;
+    text-align: right;
+    padding-right: 0.2rem;
+    color: hsl(0, 0%, 25%);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.07s ease;
+}
+
+footer a:hover {
+    color: hsl(0, 0%, 35%);
+}
+
+/* @utility classes */
+.display-none {
+    display: none;
+}
