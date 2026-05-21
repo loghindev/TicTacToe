@@ -1,17 +1,16 @@
-import { createBoard } from "./ui.js";
+import { initiateState, updatePlayer } from "./logic.js";
+import { renderBoard, setCell } from "./ui.js";
 
-const player1 = ["X", "O"][Math.floor(Math.random() * 2)];
-const player2 = player1 === "X" ? "O" : "X";
-let currentPlayer = [player1, player2][Math.floor(Math.random() * 2)];
+// @to learn - Array Interface / fill (method)
+const arr = Array(3).fill(true, 1, 3);
+console.log(arr);
 
-// @temp
-function updateCurrent() {
-    currentPlayer === player1
-        ? (currentPlayer = player2)
-        : (currentPlayer = player1);
-}
+let state = initiateState(); // gameState
+console.log(state);
 
-createBoard((cell) => {
-    cell.textContent = currentPlayer;
-    updateCurrent();
+renderBoard((cell) => {
+    if (cell.textContent !== "") return;
+    setCell(cell, state.currentPlayer);
+    state = updatePlayer(state);
+    console.log(state);
 });

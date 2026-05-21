@@ -1,6 +1,6 @@
 const board = document.querySelector("#board");
 
-export function createBoard(handleClick) {
+export function renderBoard(handleClick) {
     for (let r = 0; r < 3; ++r) {
         for (let c = 0; c < 3; ++c) {
             const cell = document.createElement("div");
@@ -9,4 +9,8 @@ export function createBoard(handleClick) {
             board.appendChild(cell);
         }
     }
+}
+
+export function setCell(target, value) {
+    target.textContent = value;
 }
